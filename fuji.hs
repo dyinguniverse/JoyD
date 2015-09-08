@@ -14,11 +14,15 @@ null' x
 
 --pembatas
 
-take' x = x
+take' n [] = []
+take' 0 (x:xs) = []
+take' n (x:xs) = (x) : take' (n-1) (xs)
 
 --pembatas
 
-drop' x = x
+drop' n [] = []
+drop' 0 (x:xs) = (x:xs)
+drop' n (x:xs) = drop' (n-1) xs
 
 --pembatas
 
@@ -86,7 +90,8 @@ head' (x:xs) = x
 
 --pembatas
 
-length' x = x
+length' [] = 0
+length' (x:xs) = 1 + length' (xs)
 
 --pembatas
 
