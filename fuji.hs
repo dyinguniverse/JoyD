@@ -1,5 +1,6 @@
 -- First Assignment
 -- Reimplement Haskell function
+-- DON'T USE GOOGLE
 
 module Fuji where
 
@@ -7,7 +8,9 @@ import Data.List
 
 -- 1.a
 
-null' x = x
+null' x
+  | x == [] = "True"
+  | otherwise = "False"
 
 --pembatas
 
@@ -103,11 +106,15 @@ init' x = x
 
 --pembatas
 
-max' x = x
+max' a b
+  | a >= b = b
+  | otherwise = b
 
 --pembatas
 
-min' x = x
+min' a b
+  | a <= b = b
+  | otherwise = b
 
 --pembatas
 
