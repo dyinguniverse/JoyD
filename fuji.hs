@@ -107,13 +107,13 @@ init' x = x
 --pembatas
 
 max' a b
-  | a >= b = b
+  | a >= b = a
   | otherwise = b
 
 --pembatas
 
 min' a b
-  | a <= b = b
+  | a <= b = a
   | otherwise = b
 
 --pembatas
