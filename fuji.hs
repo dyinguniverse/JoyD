@@ -22,11 +22,11 @@ drop' x = x
 
 --pembatas
 
-fst' x = x
+fst' (a,b) = a
 
 --pembatas
 
-snd' x = x
+snd' (a,b) = b
 
 --pembatas
 
@@ -82,7 +82,7 @@ notElem' x = x
 
 --pembatas
 
-head' x = x
+head' (x:xs) = x
 
 --pembatas
 
@@ -98,7 +98,7 @@ last' x = x
 
 --pembatas
 
-tail' x = x
+tail' (x:xs) = xs
 
 --pembatas
 
