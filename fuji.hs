@@ -9,8 +9,8 @@ import Data.List
 -- 1.a
 
 null' x
-  | x == [] = "True"
-  | otherwise = "False"
+  | x == [] = True
+  | otherwise = False
 
 --pembatas
 
@@ -42,11 +42,13 @@ filter' x = x
 
 --pembatas
 
-delete' x = x
+delete' n (x:xs)
+  | n == x = (xs)
+  | otherwise = x : delete' n (xs)
 
 --pembatas
 
-deleteAll' x = x
+deleteAll' n (x:xs) = (x:xs)
 
 --pembatas
 
@@ -58,7 +60,7 @@ foldl1' x = x
 
 --pembatas
 
-zip' x = x
+zip' [] [] = []
 
 --pembatas
 
@@ -78,11 +80,17 @@ scanl1' x = x
 
 --pembatas
 
-elem' x = x
+elem' n [] = False
+elem' n (x:xs)
+ | n == x = True
+ | otherwise = elem' n (xs)
 
 --pembatas
 
-notElem' x = x
+notElem' n [] = True
+notElem' n (x:xs)
+  | n == x = False
+  | otherwise = notElem' n (xs)
 
 --pembatas
 
@@ -95,8 +103,10 @@ length' (x:xs) = 1 + length' (xs)
 
 --pembatas
 
-reverse' x = x
+reverse' [] = []
+reverse' (x:xs) = reverse' xs ++ [x]
 
+--reverse [1,2,3,4] = [4,3,2,1]
 --pembatas
 
 last' x = x
@@ -107,7 +117,8 @@ tail' (x:xs) = xs
 
 --pembatas
 
-init' x = x
+init' (x) = []
+init' (x:xs) = init' (xs) 
 
 --pembatas
 
@@ -123,11 +134,12 @@ min' a b
 
 --pembatas
 
-concat' x = x
+concat' [] = []
+concat' (x:xs) = x ++ concat' (xs)
 
 --pembatas
 
-intersperse' x = x
+intersperse' n (x:xs) = (x:xs)
 
 --pembatas
 
@@ -135,11 +147,17 @@ intercalate' x = x
 
 --pembatas
 
-and' x = x
+and' [] = True
+and' (x:xs)
+  | x == False = False
+  | otherwise = and' (xs)
 
 --pembatas
 
-or' x = x
+or' [] = False
+or' (x:xs)
+  | x == True = True
+  | otherwise = or' (xs)
 
 --pembatas
 
@@ -147,7 +165,8 @@ zip3' x = x
 
 --pembatas
 
-sum' x = x
+sum' [] = 0
+sum' (x:xs) = x + sum' (xs)
 
 --pembatas
 
@@ -155,7 +174,7 @@ product' x = x
 
 --pembatas
 
-words' x = x
+words' (x:xs) = (x:xs)
 
 --pembatas
 
