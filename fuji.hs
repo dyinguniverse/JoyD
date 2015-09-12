@@ -34,14 +34,19 @@ snd' (a,b) = b
 
 --pembatas
 
-map' x = x
+map' n [] = []
+map' n (x:xs) = (n x) : map' n (xs)
 
 --pembatas
 
-filter' x = x
+filter' n [] = []
+filter' n (x:xs)
+  | (n x) == True = (x) : filter' n (xs)
+  | otherwise = filter' n (xs)
 
 --pembatas
 
+delete' n [] = []
 delete' n (x:xs)
   | n == x = (xs)
   | otherwise = x : delete' n (xs)
@@ -52,7 +57,9 @@ deleteAll' n (x:xs) = (x:xs)
 
 --pembatas
 
-foldl' x = x
+--foldl' (a) (b) [] = b
+--foldl' (a) (b) [c] = b (a) c
+--foldl' (a) (b) (c:cs) = b (a) c (a) foldl' (a) (b) (cs)
 
 --pembatas
 
@@ -61,6 +68,9 @@ foldl1' x = x
 --pembatas
 
 zip' [] [] = []
+zip' (x:xs) [] = []
+zip' [] (x:xs) = []
+zip' (x:xs) (y:ys) = [(x,y)] ++ zip (xs) (ys)
 
 --pembatas
 
@@ -68,7 +78,10 @@ zipWith' x = x
 
 --pembatas
 
-nth' x = x
+--nth' (x) 0 = (x)
+--nth' (x:xs) n
+--  | [x] = (n+1) = x
+--  | otherwise = nth' (xs) n
 
 --pembatas
 
@@ -109,7 +122,8 @@ reverse' (x:xs) = reverse' xs ++ [x]
 --reverse [1,2,3,4] = [4,3,2,1]
 --pembatas
 
-last' x = x
+last' [x] = x
+last' (x:xs) = last' xs
 
 --pembatas
 
@@ -117,8 +131,11 @@ tail' (x:xs) = xs
 
 --pembatas
 
-init' (x) = []
-init' (x:xs) = init' (xs) 
+init' [x] = []
+init' (x:xs) = [x] ++ init' (xs)
+
+--init (1,2,3,4,5) = (1,2,3,4)
+--init (1) = ()
 
 --pembatas
 
@@ -170,11 +187,14 @@ sum' (x:xs) = x + sum' (xs)
 
 --pembatas
 
-product' x = x
+product' [] = 1
+product' (x:xs) = x * product' (xs)
+
 
 --pembatas
 
-words' (x:xs) = (x:xs)
+words' "" = []
+words' (x:xs) = [(x:xs)]
 
 --pembatas
 
@@ -186,7 +206,8 @@ unlines' x = x
 
 --pembatas
 
-unwords' x = x
+unwords' [] = ""
+unwords' [(x:xs)] = (x:xs)
 
 --pembatas
 
