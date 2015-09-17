@@ -53,43 +53,48 @@ delete' n (x:xs)
 
 --pembatas
 
-deleteAll' n (x:xs) = (x:xs)
+deleteAll' n [] = []
+deleteAll' n (x:xs)
+  | n == x = deleteAll' n (xs)
+  | otherwise = [x] ++ deleteAll' n (xs)
 
 --pembatas
 
---foldl' (a) (b) [] = b
---foldl' (a) (b) [c] = b (a) c
---foldl' (a) (b) (c:cs) = b (a) c (a) foldl' (a) (b) (cs)
+foldlll' (f) n [] = n
+foldlll' (f) n (x:xs) = f (foldlll' f n xs) (x)
 
 --pembatas
 
-foldl1' x = x
+foldlll1' (f) [x] = x
+foldlll1' (f) (x:xs) = f (foldlll1' f xs) (x)
 
 --pembatas
 
-zip' [] [] = []
 zip' (x:xs) [] = []
 zip' [] (x:xs) = []
 zip' (x:xs) (y:ys) = [(x,y)] ++ zip (xs) (ys)
 
 --pembatas
 
-zipWith' x = x
+zipWith' (f) [] _ = []
+zipWith' (f) _ [] = []
+zipWith' (f) (x:xs) (y:ys) = [ f x y ] ++ zipWith' (f) (xs) (ys)
 
 --pembatas
 
---nth' (x) 0 = (x)
---nth' (x:xs) n
---  | [x] = (n+1) = x
---  | otherwise = nth' (xs) n
+nth' (x:xs) n
+ | n == 0 = x
+ | otherwise = nth' xs (n-1)
 
 --pembatas
 
-scanl' x = x
+scanll' f n [] = [n]
+scanll' f n (x:xs) = [n] ++ scanll' f (f n x) xs
 
 --pembatas
 
-scanl1' x = x
+--scanl1' f [] = []
+--scanl1' f (x:xs) = [x] ++ f (x) (scanl1' f xs)
 
 --pembatas
 
@@ -134,9 +139,6 @@ tail' (x:xs) = xs
 init' [x] = []
 init' (x:xs) = [x] ++ init' (xs)
 
---init (1,2,3,4,5) = (1,2,3,4)
---init (1) = ()
-
 --pembatas
 
 max' a b
@@ -156,7 +158,9 @@ concat' (x:xs) = x ++ concat' (xs)
 
 --pembatas
 
-intersperse' n (x:xs) = (x:xs)
+intersperse' n [] = []
+intersperse' n [x] = [x]
+intersperse' n (x:xs) = [x] ++ [n] ++ intersperse' n (xs)
 
 --pembatas
 
