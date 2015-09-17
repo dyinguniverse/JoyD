@@ -72,7 +72,7 @@ foldlll1' (f) (x:xs) = f (foldlll1' f xs) (x)
 
 zip' (x:xs) [] = []
 zip' [] (x:xs) = []
-zip' (x:xs) (y:ys) = [(x,y)] ++ zip (xs) (ys)
+zip' (x:xs) (y:ys) = [(x,y)] ++ zip' (xs) (ys)
 
 --pembatas
 
@@ -164,7 +164,8 @@ intersperse' n (x:xs) = [x] ++ [n] ++ intersperse' n (xs)
 
 --pembatas
 
-intercalate' x = x
+intercalate' _ [[]] = []
+intercalate' _ [(x:xs)] = x:xs
 
 --pembatas
 
@@ -182,7 +183,10 @@ or' (x:xs)
 
 --pembatas
 
-zip3' x = x
+zip3' [] _ _ = []
+zip3' _ [] _ = []
+zip3' _ _ [] = []
+zip3' (x:xs) (y:ys) (z:zs) = [(x,y,z)] ++ zip3' (xs) (ys) (zs)
 
 --pembatas
 
